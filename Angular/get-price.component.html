@@ -1,0 +1,225 @@
+<h3>Get Price</h3>
+<form [formGroup]="getPriceForm">
+  <div id="inputValues" class="card card-primary">
+    <div class="card-header">Input Values</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col form-group">
+          <label for="priceScheduleID">Price Schedule</label>
+          <div class="input-group-prepend">
+            <i (click)="onLookup_priceSchedule()" class="fas fa-search"></i>
+            <ng-select 
+              id="priceScheduleID" 
+              [multiple]="false" 
+              [selectOnTab]="true" 
+              formControlName="priceScheduleID"
+              [ngClass]="{
+                  'is-invalid': submitted && f.priceScheduleID.errors,
+                  'w-100': true
+                }" 
+                [searchable]="true" 
+                [notFoundText]="'Please start type to search'"
+                (search)="search($event, filters.PriceSchedule)" 
+                (change)="
+                  onSelectBoxChanged(
+                    $event,
+                    'priceScheduleID',
+                    priceSchedules)">
+              <ng-option *ngFor="let item of priceSchedules" [value]="item.id">
+                {{ item.name }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col form-group">
+          <label class="font-weight-bold" for="effectiveDate"> * Effective Date</label>
+          <input class="form-control" formControlName="effectiveDate" placeholder="Enter Effective Date"
+            [ngClass]="{ 'is-invalid': submitted && f.effectiveDate.errors }" />
+        </div>
+        <div class="col form-group">
+          <label for="quantity">Quantity</label>
+          <input class="form-control" formControlName="quantity" placeholder="Enter Quantity"
+            [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+          <label for="unitPriceAmount">Unit Price Amount</label>
+          <input class="form-control" formControlName="unitPriceAmount" placeholder="Enter Unit Price Amount"
+            [ngClass]="{ 'is-invalid': submitted && f.unitPriceAmount.errors }" />
+        </div>
+        <div class="col form-group">
+          <label class="font-weight-bold" for="itemID">* Item</label>
+          <div class="input-group-prepend">
+            <i (click)="onLookup_item()" class="fas fa-search"></i>
+            <ng-select id="itemID" [multiple]="false" [selectOnTab]="true" formControlName="itemID" [ngClass]="{
+                  'is-invalid': submitted && f.itemID.errors,
+                  'w-100': true
+                }" [searchable]="true" [notFoundText]="'Please start type to search'"
+              (search)="search($event, filters.Item)" (change)="
+                  onSelectBoxChanged(
+                    $event,
+                    'itemID',
+                    items)">
+              <ng-option *ngFor="let item of items" [value]="item.id">
+                {{ item.name }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col form-group">
+          <label class="font-weight-bold" for="unitOfMeasureID">* Unit of Measure</label>
+          <div class="input-group-prepend">
+            <i (click)="onLookup_unitOfMeasure()" class="fas fa-search"></i>
+            <ng-select 
+              id="unitOfMeasureID" 
+              [multiple]="false" 
+              [selectOnTab]="true" 
+              formControlName="unitOfMeasureID"
+              [ngClass]="{
+                  'is-invalid': submitted && f.unitOfMeasureID.errors,
+                  'w-100': true
+                }" 
+              [searchable]="true" 
+              [notFoundText]="'Please start type to search'"
+              (search)="search($event, filters.UnitOfMeasure)" 
+              (change)="
+                  onSelectBoxChanged(
+                    $event,
+                    'unitOfMeasureID',
+                    uofMs)">
+              <ng-option *ngFor="let item of uofMs" [value]="item.id">
+                {{ item.name }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+          <label class="font-weight-bold" for="currencyID">* Currency</label>
+          <div class="input-group-prepend">
+            <i (click)="onLookup_currency()" class="fas fa-search"></i>
+            <ng-select id="currencyID" [multiple]="false" [selectOnTab]="true" formControlName="currencyID" [ngClass]="{
+                  'is-invalid': submitted && f.currencyID.errors,
+                  'w-100': true
+                }" [searchable]="true" [notFoundText]="'Please start type to search'"
+              (search)="search($event, filters.Currency)" (change)="
+                  onSelectBoxChanged(
+                    $event,
+                    'currencyID',
+                    currencies)">
+              <ng-option *ngFor="let item of currencies" [value]="item.id">
+                {{ item.name }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col form-group">
+          <label for="customerID">Customer</label>
+          <div class="input-group-prepend">
+            <i (click)="onLookup_customer()" class="fas fa-search"></i>
+            <ng-select id="customerID" [multiple]="false" [selectOnTab]="true" formControlName="customerID" [ngClass]="{
+                  'is-invalid': submitted && f.customerID.errors,
+                  'w-100': true
+                }" [searchable]="true" [notFoundText]="'Please start type to search'"
+              (search)="search($event, filters.Customer)" (change)="
+                  onSelectBoxChanged(
+                    $event,
+                    'customerID',
+                    customers)">
+              <ng-option *ngFor="let item of customers" [value]="item.id">
+                {{ item.name }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col form-group">
+          <label for="locationID">Location</label>
+          <div class="input-group-prepend">
+            <i (click)="onLookup_location()" class="fas fa-search"></i>
+            <ng-select id="locationID" [multiple]="false" [selectOnTab]="true" formControlName="locationID" [ngClass]="{
+                  'is-invalid': submitted && f.locationID.errors,
+                  'w-100': true
+                }" [searchable]="true" [notFoundText]="'Please start type to search'"
+              (search)="search($event, filters.Location)" (change)="
+                  onSelectBoxChanged(
+                    $event,
+                    'locationID',
+                    locations)">
+              <ng-option *ngFor="let item of locations" [value]="item.id">
+                {{ item.name }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="outputValues" class="card card-primary">
+    <div class="card-header">Output Values</div>
+    <div class="card-body">
+      <div class="row">
+
+        <div class="col form-group">
+          <label for="returnedUnitPrice">
+            Returned Unit Price
+          </label>
+          <input readonly class="form-control" formControlName="returnedUnitPrice" id="returnedUnitPrice" />
+        </div>
+        <div class="col form-group">
+          <label for="pricingRunID">
+            Pricing Run ID
+          </label>
+          <input readonly class="form-control" formControlName="pricingRunID" id="pricingRunID" />
+        </div>
+        <div class="col form-group">
+          <label for="returnedPriceScheduleName">
+            Returned Price Schedule Name
+          </label>
+          <input readonly class="form-control" formControlName="returnedPriceScheduleName"
+            id="returnedPriceScheduleName" />
+        </div>
+        <div class="col form-group">
+          <label for="pricingRunTime">
+            Pricing Run Time
+          </label>
+          <input readonly class="form-control" formControlName="pricingRunTime" id="pricingRunTime" />
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">Price Adjustments</div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table class="table table-hover table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th *ngFor="let columnDef of columnDefs| onlyActive" scope="col">
+                <app-table-header [title]="columnDef.headerName">
+                </app-table-header>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <ng-container *ngFor="let col of columnDefs | onlyActive" scope="row">
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template>
+        <app-spinner>           
+        </app-spinner>
+      </ng-template>      
+    </div>
+  </div>
+</form>
+
+<div class="row m-0 mt-4">
+  <button type="button" (click)="execute()" class="btn btn-primary mr-3">
+    Execute
+  </button>
+</div>

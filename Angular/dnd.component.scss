@@ -1,0 +1,103 @@
+$dndPrimaryColor: $dndPrimaryColor;
+
+.dropdown-menu {
+  min-width: 300px;
+}
+.column-icon {
+  svg {
+    width: 24px;
+    display: inline-block;
+    fill: $dndPrimaryColor;
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+}
+.drag-area {
+  .onDragShow {
+    display: none;
+  }
+
+  .onDragHide {
+    display: block;
+  }
+
+  .dndDraggingSource {
+    position: relative;
+    height: 24px;
+
+    .onDragShow {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 24px;
+      background-color: #ffffff;
+      border: dashed 1px $dndPrimaryColor;
+      z-index: 10000;
+    }
+
+    .onDragHide {
+      display: none;
+    }
+  }
+
+  .dndDragging {
+    border: solid 1px #dee2e6;
+  }
+
+  .custom-control {
+    display: inline-block;
+    color: #414446;
+  }
+}
+
+.dropdown-toggle {
+  &::after {
+    display: none;
+  }
+}
+
+.drag {
+  font-weight: bold;
+  content: "⋮⋮";
+  letter-spacing: -8px;
+  font-size: 12px;
+  width: 18px;
+  display: inline-block;
+  vertical-align: text-top;
+  cursor: move;
+  color: #b7b7b7;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.dndPlaceholder {
+  border-bottom: solid 2px $dndPrimaryColor;
+  position: relative;
+
+  &:before,
+  &:after {
+    position: absolute;
+    background-color: $dndPrimaryColor;
+    height: 6px;
+    display: block;
+    width: 2px;
+    content: "";
+    top: -2px;
+  }
+
+  &:before {
+    left: 0px;
+  }
+
+  &:after {
+    right: 0px;
+  }
+}
+.custom-control-label {
+  word-break: break-all;
+}

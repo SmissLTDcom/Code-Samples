@@ -1,0 +1,131 @@
+@use '../../../../shared/styles/variables' as *;
+@use '../../../../shared/styles/mixins' as *;
+@use '../../../../shared/styles/colors' as *;
+
+.addAchievement,
+.editAchievement {
+  padding: 20px;
+  background: $white;
+  .title_wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    position: relative;
+    .modalContent__title {
+      font-weight: $title-font-weight;
+      font-size: $title-font-size;
+      line-height: $title-line-height;
+      text-align: $title-text-align;
+      width: 100%;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+
+  .cancelButton {
+    margin-right: $cancel-button-margin;
+  }
+}
+
+.closeBtn {
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.editUser {
+  background-color: $white;
+  padding: 40px;
+
+  .dataContainer {
+    margin-top: 40px;
+  }
+  .title {
+    font-weight: $title-font-weight;
+    font-size: $title-font-size;
+    line-height: $title-line-height;
+    text-align: $title-text-align;
+    margin-bottom: 40px;
+  }
+
+  .checkboxContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .checkboxLabel {
+      color: $text-secondary;
+      font-weight: 600;
+      line-height: 20px;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+  }
+}
+
+.editAchievement {
+  .achievementInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .achievementImageWrapper {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+
+.addAchievement,
+.editUser {
+  .titleWrapper {
+    position: relative;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    position: relative;
+    margin-top: 16px;
+  }
+}
+
+.editUser {
+  padding: 36px 24px;
+  .userInfo {
+    .user {
+      margin: 20px 0;
+      .achievementsList {
+        margin-top: 10px;
+        .achievementItem {
+          display: flex;
+          align-items: center;
+          padding: 16px 34px;
+          cursor: pointer;
+          word-break: break-word;
+          &:hover {
+            background-color: $primary-dark;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include for-mobile-portrait {
+  .addAchievement,
+  .editAchievement {
+    padding: 20px;
+    width: 100%;
+  }
+  .selectedUsers {
+    max-height: 60vh;
+  }
+}
+

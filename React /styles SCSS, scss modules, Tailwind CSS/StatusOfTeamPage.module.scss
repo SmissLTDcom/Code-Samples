@@ -1,0 +1,58 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.statusOfTeamContainer {
+  padding-left: 23px;
+  padding-right: 69px;
+  margin-top: 15px;
+
+  .filterInput {
+    width: 220px;
+    padding-left: 20px;
+    input {
+      width: 164px;
+      height: 36px;
+      font-size: 16px;
+      padding: 0 5%;
+      &::placeholder {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@include for-desktop {
+  .statusOfTeamContainer {
+    .inputsContainer {
+      .selectContainer {
+        display: none;
+      }
+    }
+  }
+}
+
+@include for-mobile-portret {
+  .statusOfTeamContainer {
+    padding: 10px;
+
+    .inputsContainer {
+      display: flex;
+      justify-content: space-between;
+
+      .filterInput {
+        input {
+        width: 140px;
+        }
+      }
+
+      .selectContainer {
+        width: 150px;
+        margin-right: 1%;
+        input {
+          border-radius: 20px;
+          padding: 15px;
+        }
+      }
+    }
+  }
+}

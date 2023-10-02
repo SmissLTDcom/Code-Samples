@@ -1,0 +1,95 @@
+model Job {
+    id              String                  @id @default(uuid())
+    name            String
+    contract        JobContractType
+    location        String
+    salary          String?
+    department      OrganisationDepartment? @relation(fields: [departmentId], references: [id])
+    departmentId    String?                 @map("department_id")
+    organisationId  String                  @map("organisation_id")
+    organisation    Organisation            @relation(fields: [organisationId], references: [id])
+    hiringManagerId String                  @map("hiring_manager_id")
+    hiringManager   User                    @relation("hiring_manager_jobs", fields: [hiringManagerId], references: [id])
+    recruiters      User[]                  @relation("recruiter_jobs")
+    hiringTeam      User[]                  @relation("hiring_team_jobs")
+    stages          JobStage[]
+    questions       ApplicationQuestion[]
+
+    jobBoardShow Boolean @map("job_board_show")
+
+    shortDescription String? @map("short_description")
+    longDescription  String? @map("long_description")
+
+    archived Boolean @default(false)
+
+    updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+    createdAt DateTime  @default(now()) @map("created_at")
+    deletedAt DateTime? @map("deleted_at")
+
+    User   User?   @relation(fields: [userId], references: [id])
+    userId String?
+
+    @@unique(fields: [id, organisationId], name: "jobInOrganisation")
+    @@map("jobs")
+}
+
+model JobStage {
+    id        String        @id @default(uuid())
+    name      String
+    jobId     String        @map("job_id")
+    job       Job           @relation(fields: [jobId], references: [id])
+    index     Int
+    type      JobStageType?
+    updatedAt DateTime      @default(now()) @updatedAt @map("updated_at")
+    createdAt DateTime      @default(now()) @map("created_at")
+    deletedAt DateTime?     @map("deleted_at")
+
+    @@unique(fields: [jobId, index], name: "stagesInJob")
+    @@map("job_stages")
+}
+
+model ApplicationQuestion {
+    id          String                  @id @default(uuid())
+    title       String
+    placeholder String?
+    jobId       String                  @map("job_id")
+    job         Job                     @relation(fields: [jobId], references: [id])
+    index       Int
+    type        ApplicationQuestionType
+    updatedAt   DateTime                @default(now()) @updatedAt @map("updated_at")
+    createdAt   DateTime                @default(now()) @map("created_at")
+    deletedAt   DateTime?               @map("deleted_at")
+
+    @@unique(fields: [jobId, index], name: "questionsInJob")
+    @@map("application_questions")
+}
+
+model Organisation {
+    id        String    @id @default(uuid())
+    jobs      Job[]
+    updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+    createdAt DateTime  @default(now()) @map("created_at")
+    deletedAt DateTime? @map("deleted_at")
+}
+
+model OrganisationDepartment {
+    id             String    @id @default(uuid())
+    name           String
+    organisationId String?   @map("organisation_id")
+    updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+    createdAt      DateTime  @default(now()) @map("created_at")
+    deletedAt      DateTime? @map("deleted_at")
+
+    jobs Job[]
+}
+
+model User {
+    id                String    @id @default(uuid())
+    hiringManagerJobs Job[]     @relation("hiring_manager_jobs")
+    recruiterJobs     Job[]     @relation("recruiter_jobs")
+    hiringTeamJobs    Job[]     @relation("hiring_team_jobs")
+    updatedAt         DateTime  @default(now()) @updatedAt @map("updated_at")
+    createdAt         DateTime  @default(now()) @map("created_at")
+    deletedAt         DateTime? @map("deleted_at")
+    jobs              Job[]
+}

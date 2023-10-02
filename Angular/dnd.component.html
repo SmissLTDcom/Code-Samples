@@ -1,0 +1,45 @@
+<div ngbDropdown class="d-inline-block">
+    <div class="btn btn-outline-light border-0 column-icon" ngbDropdownToggle>
+      <ng-content></ng-content>
+      <svg viewBox="0 0 94 74">
+        <g stroke="null" id="XMLID_6_">
+          <path stroke="null"
+                d="m33.092682,74.404233l27.814637,0l0,-74.808468l-27.814637,0l0,74.808468zm-33.339463,0l27.814637,0l0,-74.808468l-27.814637,0l0,74.808468zm66.678925,-74.808468l0,74.808468l27.814637,0l0,-74.808468l-27.814637,0z"
+                class="st0" id="XMLID_11_"/>
+        </g>
+      </svg>
+    </div>
+    <div ngbDropdownMenu>
+      <ul class="drag-area" dndDropzone dndEffectAllowed="move" (dndDrop)="onDrop($event, list)">
+        <li dndPlaceholderRef class="dndPlaceholder"></li>
+        <li
+          *ngFor="let item of list; let i = index"
+          [dndDraggable]="list"
+          [dndType]="i"
+          dndEffectAllowed="move"
+          (dndMoved)="onDragged(item, list, i)"
+        >
+          <div class="onDragHide">
+            <div class="row m-0 p-0">
+              <div class="col-1 m-0 p-0 ml-2">
+                <div class="drag">⋮⋮</div>
+              </div>
+              <div class="m-0 p-0 col">
+                <div class="custom-control custom-checkbox">
+                  <input (change)="onChange(i)" type="checkbox" class="custom-control-input" id="{{item.headerName}}" [checked]="item.isActive">
+                  <label class="custom-control-label" for="{{item.headerName}}">{{item.headerName}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="onDragShow"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  

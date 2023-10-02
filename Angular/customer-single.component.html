@@ -1,0 +1,65 @@
+<h3>
+  Create / Update Customer
+</h3>
+<form [formGroup]="customerForm">
+  <div class="row">
+    <div class="col form-group">
+      <label for="name" class="font-weight-bold">* Customer Name:</label>
+      <input      
+        class="form-control"
+        formControlName="name"
+        placeholder="Enter Customer Name"
+        maxlength="100"
+        [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+      </div>
+    </div>
+    <div class="col form-group">
+      <label for="number" class="font-weight-bold">* Number:</label>
+      <input
+      class="form-control"
+      formControlName="number"
+      placeholder="Enter Number"
+      maxlength="50"
+      [ngClass]="{ 'is-invalid': submitted && f.number.errors }"
+      />
+      <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+        <div *ngIf="f.number.errors.required">Number is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">  
+    <div class="col form-group">
+      <label for="erpid" class="font-weight-bold">* ERP ID:</label>
+      <input
+      class="form-control"
+      formControlName="erpid"
+      placeholder="Enter ERP ID"
+      maxlength="50"
+      [ngClass]="{ 'is-invalid': submitted && f.erpid.errors }"
+      />
+      <div *ngIf="submitted && f.erpid.errors" class="invalid-feedback">
+        <div *ngIf="f.erpid.errors.required">ERP ID is required</div>
+      </div>
+    </div>
+  </div> 
+</form>
+<app-customer-attribute-value-list    
+  [customerID] = 'idOfCustomer' 
+  ></app-customer-attribute-value-list>
+<div class="row">
+  <div class="col">
+    <button type="submit" class="btn btn-outline-secondary" [routerLink]="['/price/customers']" routerLinkActive="router-link-active">
+      Go Back
+    </button>
+  </div>
+  <div class="col flex-grow-1"></div>
+  <div class="align-content-end">
+    <button type="submit" (click)="submit()" class="btn btn-primary mr-3">
+      Save
+    </button>
+  </div>
+</div>
+

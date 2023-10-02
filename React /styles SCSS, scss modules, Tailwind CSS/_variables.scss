@@ -1,0 +1,34 @@
+@use './colors' as *;
+
+// BOX SHADOW
+$card-box-shadow: -4px 4px 6px $card-box-shadow;
+
+// BORDER RADIUS
+$border-radius: 8px;
+
+// LAYOUT VARIABLES
+// candidate info container
+$candidate-info-container-width: 1150px;
+
+// header height
+$header-height: 40px;
+$header-height-mobile-large: 54px;
+
+// header padding
+$header-padding-desktop: 38px;
+$header-padding-mobile-portrait: 2em;
+$header-padding-mobile-large: 0;
+$ats-header-height: 73px;
+
+// footer height
+$ats-footer-height: 66px;
+
+// title styles for modal
+$title-font-weight: 600;
+$title-font-size: 24px;
+$title-font-size-mobile: 20px;
+$title-line-height: 33px;
+$title-text-align: center;
+
+// sidebar
+$sidebar-fixed-width: 252px;
